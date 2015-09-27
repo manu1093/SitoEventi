@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>biglietto acquistato!</title>
+    </h:head>
+    #{tk.statoPrenotazione()}
+    <h:body>
+        Grazie #{tk.cognome} #{tk.nome} <br/>
+        per aver acquistato un biglietto per l'evento #{tk.selezionato.nome} del #{tk.selezionato.dataEvento}. <br/>
+        <br/>
+        Il tuo settore è #{tk.numeroSettore}  <h:outputText value="e il posto è: #{tk.posto}" rendered="#{tk.postoSelezionato}"/>
+        <f:view>
+            <h:form>
+                <h:dataTable value="#{tk.settoriEventoPrenotazione}" var="item">
+                    <h:column>
+                        <f:facet name="header">settore</f:facet>
+                       #{item.numero}   
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">posti occupati</f:facet>
+                        #{tk.postiOccupatiEventoPrenotazione(item)}
+                    </h:column>
+                </h:dataTable>                
+            </h:form>
+        </f:view>
+        
+        <h:form>
+        <h:commandButton value="Indietro" action="home"/>
+        </h:form>
+    </h:body>
+</html>
+

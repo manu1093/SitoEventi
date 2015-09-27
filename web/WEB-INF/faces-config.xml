@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee" 
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+      http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+   version="2.0">
+
+
+  <navigation-rule>
+    <navigation-case>
+      <from-outcome>descrizione</from-outcome>
+      <to-view-id>evento.jsf</to-view-id>
+      <redirect />
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>biglietto</from-outcome>
+      <to-view-id>biglietto.jsf</to-view-id>  
+      <redirect />    
+    </navigation-case>   
+    <navigation-case>
+      <from-outcome>lista-eventi</from-outcome>
+      <to-view-id>lista-eventi.jsf</to-view-id>  
+      <redirect />    
+    </navigation-case>
+     <navigation-case>
+      <from-outcome>acquisto</from-outcome>
+      <to-view-id>acquisto.jsf</to-view-id>
+      <redirect />
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>home</from-outcome>
+      <to-view-id>index.jsf</to-view-id>
+      <redirect />
+    </navigation-case>
+  </navigation-rule>
+</faces-config>

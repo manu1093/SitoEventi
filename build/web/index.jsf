@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Gestione Eventi</title>
+        <link rel="stylesheet" type="text/css" href="tcal.css"> </link>
+        <script language="JavaScript" src="tcal.js"></script>
+    </h:head>
+    
+    <h:body>
+        #{home.eventiDiOggi()}
+        <f:view>
+            <h:form>
+                <h:dataTable value="#{home.eventi}" var="item" rendered="#{home.trovatoEventi()}">
+                    <h:column>
+                        <f:facet name="header">nome</f:facet>
+                       <h:commandLink value="#{item.nome}" action="#{home.selezionaEvento(item)}"/>    
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">data</f:facet>
+                        #{item.dataEvento}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">biglietto</f:facet>
+                        <h:commandButton value="Acquista Biglietto" action="#{home.acquistaBiglietto(item)}"/>
+                    </h:column>
+                </h:dataTable>                
+            </h:form>
+        </f:view>
+        <h:outputText value="oggi non ci sono eventi" rendered="#{!home.trovatoEventi()}"/>
+        <h:form>
+            
+            data:<h:inputText id="data" value="#{home.data}" converterMessage="la data che hai messo è errata" class="tcal">
+                <f:convertDateTime pattern="dd/MM/yyyy"/>                
+            </h:inputText>
+            tipo:<h:selectOneMenu id="scelta" value="#{home.tipologia}" >
+                <f:selectItem itemLabel=""/>
+                <f:selectItems value="#{home.tipologieEventi()}" var="tipo"
+                itemValue="#{tipo}"
+                itemLabel="#{tipo}" />
+            </h:selectOneMenu>
+            <h:commandButton value="cerca" action="lista-eventi"/>
+            <br/>
+            <h:message for="data" styleClass="errorMessage"/>
+        </h:form>
+    </h:body>
+</html>
+
